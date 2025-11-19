@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiMitra - AI Farming Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>KrishiMitra</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#diagnose" class="nav-link" data-section="diagnose">
+                    <i class="fas fa-camera"></i> Diagnose
+                </a>
+                <a href="#chat" class="nav-link" data-section="chat">
+                    <i class="fas fa-comments"></i> AI Chat
+                </a>
+                <a href="#resources" class="nav-link" data-section="resources">
+                    <i class="fas fa-book"></i> Resources
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="hero">
+                <h1>Welcome to KrishiMitra</h1>
+                <p>Your AI-powered farming assistant for healthier crops and better yields</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" onclick="showSection('diagnose')">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Plant Diagnosis</h3>
+                    <p>Upload photos of your crops to detect diseases and get treatment advice</p>
+                    <button class="btn-primary">Start Diagnosis</button>
+                </div>
+
+                <div class="feature-card" onclick="showSection('chat')">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>AI Assistant</h3>
+                    <p>Get answers to your farming questions in multiple languages</p>
+                    <button class="btn-primary">Chat Now</button>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>Weather Insights</h3>
+                    <p>Personalized weather forecasts and farming recommendations</p>
+                    <button class="btn-primary">View Forecast</button>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Farming Guide</h3>
+                    <p>Comprehensive resources for modern farming practices</p>
+                    <button class="btn-primary">Explore</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagnosis Section -->
+        <section id="diagnose" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-camera"></i> Plant Disease Diagnosis</h2>
+                <p>Upload a clear photo of your plant leaves for AI analysis</p>
+            </div>
+
+            <div class="diagnosis-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Plant Photo</h3>
+                        <p>Click to select or drag & drop an image</p>
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                    </div>
+                </div>
+
+                <div class="result-area" id="resultArea">
+                    <div class="result-placeholder">
+                        <i class="fas fa-microscope"></i>
+                        <h3>Diagnosis Results</h3>
+                        <p>Your analysis will appear here after upload</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-primary" id="analyzeBtn" disabled>
+                    <i class="fas fa-search"></i> Analyze Image
+                </button>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-comments"></i> AI Farming Assistant</h2>
+                <p>Ask questions about farming in your preferred language</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        <div class="message-content">
+                            <strong>KrishiMitra:</strong> Hello! I'm your farming assistant. Ask me anything about agriculture, crops, or farming practices.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                    </select>
+                    <input type="text" id="chatInput" placeholder="Ask a farming question...">
+                    <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Analyzing your plant image...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
